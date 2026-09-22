@@ -1,0 +1,46 @@
+name: Build Vayasa iOS
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Resolve Swift packages
+        run: |
+          xcodebuild \
+            -project VayasaAgelessHealth.xcodeproj \
+            -scheme VayasaAgelessHealth \
+            -resolvePackageDependencies
+
+      - name: Build iOS app
+        run: |
+          xcodebuild \
+            -project VayasaAgelessHealth.xcodeproj \
+            -scheme VayasaAgelessHealth \
+            -sdk iphoneos \
+            -configuration Release \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            build
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: Vayasa-iOS-Build
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/**/Build/Products/Release-iphoneos/*.app
