@@ -10,6 +10,10 @@ packages:
     url: https://github.com/googleads/swift-package-manager-google-mobile-ads.git
     from: 13.10.0
 
+  GoogleUserMessagingPlatform:
+    url: https://github.com/googleads/swift-package-manager-google-user-messaging-platform.git
+    from: 3.1.0
+
 targets:
   VayasaAgelessHealth:
     type: application
@@ -29,3 +33,4 @@ targets:
 
     dependencies:
       - package: GoogleMobileAds
+      - package: GoogleUserMessagingPlatform
