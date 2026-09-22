@@ -1,0 +1,31 @@
+name: VayasaAgelessHealth
+
+options:
+  bundleIdPrefix: com.vayasa
+  deploymentTarget:
+    iOS: "16.0"
+
+packages:
+  GoogleMobileAds:
+    url: https://github.com/googleads/swift-package-manager-google-mobile-ads.git
+    from: 13.10.0
+
+targets:
+  VayasaAgelessHealth:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+
+    sources:
+      - path: VayasaAgelessHealth
+
+    info:
+      path: VayasaAgelessHealth/Info.plist
+
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.vayasa.agelesshealth
+        SWIFT_VERSION: "5.0"
+
+    dependencies:
+      - package: GoogleMobileAds
