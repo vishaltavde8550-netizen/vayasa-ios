@@ -32,6 +32,7 @@ jobs:
           xcodebuild \
             -project VayasaAgelessHealth.xcodeproj \
             -scheme VayasaAgelessHealth \
+            -destination 'generic/platform=iOS' \
             -sdk iphoneos \
             -configuration Release \
             CODE_SIGNING_ALLOWED=NO \
